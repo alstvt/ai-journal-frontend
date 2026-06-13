@@ -4,10 +4,12 @@ import Message from "./components/Message";
 import TypingIndicator from "./components/TypingIndicator";
 import EmptyState from "./components/EmptyState";
 import ChatInput from "./components/ChatInput";
+import InsightsPanel from "./components/InsightsPanel";
 import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const DRAFT_KEY = "ai-journal-draft";
+const INSIGHTS_KEY = "ai-journal-insights";
 
 export default function App() {
   const [messages, setMessages] = useState([]);
@@ -15,6 +17,14 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState("light");
   const [error, setError] = useState(null);
+  const [savedInsights, setSavedInsights] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(INSIGHTS_KEY)) || [];
+    } catch {
+      return [];
+    }
+  });
+  const [showInsights, setShowInsights] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -29,6 +39,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(DRAFT_KEY, input);
   }, [input]);
+
+  useEffect(() => {
+    localStorage.setItem(INSIGHTS_KEY, JSON.stringify(savedInsights));
+  }, [savedInsights]);
 
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
@@ -78,6 +92,20 @@ export default function App() {
     }
   };
 
+  const toggleSaveInsight = (content) => {
+    setSavedInsights((prev) => {
+      const exists = prev.some((i) => i.content === content);
+      if (exists) {
+        return prev.filter((i) => i.content !== content);
+      }
+      return [{ id: Date.now(), content, date: new Date().toISOString() }, ...prev];
+    });
+  };
+
+  const deleteInsight = (id) => {
+    setSavedInsights((prev) => prev.filter((i) => i.id !== id));
+  };
+
   return (
     <div className="app">
       <Header
@@ -85,12 +113,20 @@ export default function App() {
         onReset={handleReset}
         theme={theme}
         onToggleTheme={() => setTheme(theme === "light" ? "dark" : "light")}
+        insightsCount={savedInsights.length}
+        onOpenInsights={() => setShowInsights(true)}
       />
 
       <div className="chat">
         {messages.length === 0 && <EmptyState onPick={setInput} />}
         {messages.map((msg, i) => (
-          <Message key={i} role={msg.role} content={msg.content} />
+          <Message
+            key={i}
+            role={msg.role}
+            content={msg.content}
+            savedInsights={savedInsights}
+            onToggleSave={toggleSaveInsight}
+          />
         ))}
         {loading && <TypingIndicator />}
         <div ref={bottomRef} />
@@ -110,6 +146,14 @@ export default function App() {
         loading={loading}
         inputRef={inputRef}
       />
+
+      {showInsights && (
+        <InsightsPanel
+          insights={savedInsights}
+          onClose={() => setShowInsights(false)}
+          onDelete={deleteInsight}
+        />
+      )}
     </div>
   );
 }

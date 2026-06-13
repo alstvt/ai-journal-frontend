@@ -1,4 +1,6 @@
-export default function Header({ hasMessages, onReset, theme, onToggleTheme }) {
+import { Lightbulb } from "lucide-react";
+
+export default function Header({ hasMessages, onReset, theme, onToggleTheme, insightsCount, onOpenInsights }) {
   return (
     <div className="header">
       <div>
@@ -6,6 +8,10 @@ export default function Header({ hasMessages, onReset, theme, onToggleTheme }) {
         <p className="subtitle">Напиши что думаешь — я помогу разобраться</p>
       </div>
       <div className="header__actions">
+        <button className="insights-btn" onClick={onOpenInsights} title="Мои инсайты">
+          <Lightbulb size={15} />
+          {insightsCount > 0 && <span className="insights-badge">{insightsCount}</span>}
+        </button>
         <button className="icon-btn" onClick={onToggleTheme} title="Сменить тему">
           {theme === "dark" ? "☀" : "☾"}
         </button>
