@@ -2,7 +2,9 @@
   .app {
     padding: 1.25rem 1rem;
   }
-
+  .chat {
+  min-height: 0;
+}
   .title {
     font-size: 19px;
   }
