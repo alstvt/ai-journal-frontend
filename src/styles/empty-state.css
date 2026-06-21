@@ -7,41 +7,32 @@
 }
 
 .empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding-top: 4rem;
-}
-
-.empty__icon {
-  display: block;
-  margin: 0 auto 14px;
-  color: var(--text-tertiary);
+  gap: 28px;
 }
 
 .empty__text {
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 19px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
 }
 
 .empty__prompts {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: center;
+  gap: 10px;
 }
 
-.chip {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 99px;
-  padding: 8px 18px;
-  font-size: 14px;
-  color: var(--text);
-  cursor: pointer;
-  transition: transform 0.15s, background 0.15s;
-}
-
-.chip:hover {
-  background: var(--bg);
-  transform: translateY(-1px);
+.empty__prompt {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: 1.6;
 }

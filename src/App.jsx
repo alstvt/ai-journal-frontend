@@ -109,12 +109,16 @@ export default function App() {
       setMessages(finalMessages);
 
       if (!sessionId) {
-        const created = await fetch(`${API_URL}/sessions`, {
+        fetch(`${API_URL}/sessions`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ device_id: deviceId, style, messages: finalMessages }),
-        }).then((r) => r.json());
-        if (created.session) setSessionId(created.session.id);
+        })
+          .then((r) => r.json())
+          .then((created) => {
+            if (created.session) setSessionId(created.session.id);
+          })
+          .catch(() => {});
       } else {
         fetch(`${API_URL}/sessions/${sessionId}`, {
           method: "PATCH",
@@ -252,13 +256,8 @@ export default function App() {
         onOpenHistory={openHistoryPanel}
       />
 
-      <div className="style-switcher-zone">
-        <StyleSwitcher value={style} onChange={handleStyleChange} />
-        {showOnboarding && <OnboardingTooltip onDismiss={dismissOnboarding} />}
-      </div>
-
       <div className="chat">
-        {messages.length === 0 && <EmptyState onPick={setInput} />}
+        {messages.length === 0 && <EmptyState />}
         {messages.map((msg, i) => (
           <Message
             key={i}
@@ -278,6 +277,11 @@ export default function App() {
           <button className="error-banner__retry" onClick={() => setError(null)}>×</button>
         </div>
       )}
+
+      <div className="style-switcher-zone">
+        <StyleSwitcher value={style} onChange={handleStyleChange} />
+        {showOnboarding && <OnboardingTooltip onDismiss={dismissOnboarding} />}
+      </div>
 
       <ChatInput
         value={input}

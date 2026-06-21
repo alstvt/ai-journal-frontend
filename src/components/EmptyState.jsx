@@ -1,19 +1,16 @@
-import { Feather } from "lucide-react";
-
 const PROMPTS = [
-  "Сегодня я чувствую...",
-  "Меня беспокоит...",
-  "Никак не пойму, почему...",
+  "Что сегодня вымотало больше всего?",
+  "Что крутится в голове весь день?",
+  "Чем сегодня можно гордиться?",
 ];
 
-export default function EmptyState({ onPick }) {
+export default function EmptyState() {
   return (
     <div className="empty">
-      <Feather size={22} className="empty__icon" strokeWidth={1.5} />
-      <p className="empty__text">С чего начнём сегодня?</p>
+      <p className="empty__text">Что у тебя на уме сегодня?</p>
       <div className="empty__prompts">
         {PROMPTS.map((p) => (
-          <button key={p} className="chip" onClick={() => onPick(p)}>{p}</button>
+          <p key={p} className="empty__prompt">{p}</p>
         ))}
       </div>
     </div>

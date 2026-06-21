@@ -1,0 +1,73 @@
+@media (max-width: 480px) {
+  .app {
+    padding: 1.25rem 1rem;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .header {
+    margin-bottom: 1.25rem;
+  }
+
+  .empty {
+    gap: 22px;
+  }
+
+  .empty__text {
+    font-size: 17px;
+    padding: 0 0.5rem;
+  }
+
+  .empty__prompt {
+    font-size: 12px;
+  }
+
+  .bubble-wrap {
+    max-width: 86%;
+  }
+
+  .style-pills {
+    flex-wrap: wrap;
+  }
+
+  .send-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .send-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-pill__item {
+    width: 30px;
+    height: 30px;
+  }
+
+  .insights-panel {
+    max-width: 100%;
+  }
+
+  .confirm-dialog {
+    max-width: 280px;
+    padding: 1.25rem;
+  }
+
+  .onboarding-tip {
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .empty__text {
+    font-size: 16px;
+  }
+
+  .chip {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
