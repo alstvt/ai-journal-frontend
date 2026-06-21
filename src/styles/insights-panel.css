@@ -1,0 +1,132 @@
+.insights-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+.insights-panel {
+  width: 100%;
+  max-width: 360px;
+  height: 100%;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insights-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.insights-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #f59e0b;
+}
+
+.insights-panel__close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  padding: 4px;
+}
+
+.insights-panel__close:hover {
+  color: var(--text);
+}
+
+.insights-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-tertiary);
+  gap: 10px;
+  padding: 2rem 1rem;
+}
+
+.insights-empty p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.insight-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.insight-item__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.insight-item__date {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: capitalize;
+}
+
+.insight-item__delete {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  display: flex;
+  padding: 2px;
+  transition: color 0.15s;
+}
+
+.insight-item__delete:hover {
+  color: #d97757;
+}
+
+.insight-item__text {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+}
+.history-item {
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.history-item:hover {
+  border-color: var(--text-tertiary);
+}
+
+.history-item__count {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  display: block;
+}

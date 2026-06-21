@@ -1,0 +1,47 @@
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 1rem;
+}
+
+.empty {
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.empty__icon {
+  display: block;
+  margin: 0 auto 14px;
+  color: var(--text-tertiary);
+}
+
+.empty__text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.empty__prompts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 18px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.chip:hover {
+  background: var(--bg);
+  transform: translateY(-1px);
+}
