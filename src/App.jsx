@@ -99,7 +99,7 @@ export default function App() {
       const response = await fetch(`${API_URL}/reflect`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMessages, style, device_id: deviceId}),
+        body: JSON.stringify({ messages: updatedMessages, style, device_id: deviceId, session_id: sessionId }),
       });
 
       if (!response.ok) throw new Error("server");
